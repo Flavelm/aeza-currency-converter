@@ -13,15 +13,15 @@
 
 
 $(function() {
-    const coff = 100;
+    const coef = 100;
     function translate() {
         console.log("Translate");
         setTimeout(() => {
             let element = $('span:contains("€")');
             $.each(element, (key, value) => {
-                let price = value.outerText.replaceAll("€", "");
+                let price = value.outerText.replace(/[^\d.-]+/g, '').replaceAll("€", "");
                 price = Number(price);
-                price *= coff;
+                price *= coef;
                 value.outerHTML = `<span> ${price.toFixed(2)} &#8381; </span>`;
             });
         }, 1000);
